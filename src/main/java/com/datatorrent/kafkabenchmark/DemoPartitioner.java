@@ -13,29 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.datatorrent.kafka;
+package com.datatorrent.kafkabenchmark;
 
-import org.apache.hadoop.conf.Configuration;
+import kafka.producer.Partitioner;
+import kafka.utils.VerifiableProperties;
 
-import com.datatorrent.api.DAG;
-import com.datatorrent.api.StreamingApplication;
-import com.datatorrent.api.Context.OperatorContext;
-import com.datatorrent.api.annotation.ApplicationAnnotation;
 
 /**
- * An stream app to produce msg to cluster
+ * A simple partitioner class for test purpose
+ * Key is a int string
+ * Messages are distributed to 2 partitions
+ * One for even number, the other for odd
  *
  * @since 0.9.3
  */
-@ApplicationAnnotation(name="KafkaOutputDemo")
-public class KafkaOutputDemo implements StreamingApplication
+public class DemoPartitioner implements Partitioner
 {
-
-  @Override
-  public void populateDAG(DAG dag, Configuration conf)
-  {
-    dag.setAttribute(DAG.APPLICATION_NAME, "KafkaOutputDemo");
-    PartitionableKafkaOutputOperator bpkoo = dag.addOperator("KafkaProducerOperator", PartitionableKafkaOutputOperator.class);
+  public DemoPartitioner (VerifiableProperties props) {
+    
   }
-
+  @Override
+  public int partition(Object key, int num_Partitions)
+  {
+    return Integer.parseInt((String)key)%num_Partitions;
+  }
 }

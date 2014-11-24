@@ -1,4 +1,4 @@
-package com.datatorrent.kafka;
+package com.datatorrent.kafkabenchmark;
 
 import java.io.BufferedReader;
 import java.io.IOException;

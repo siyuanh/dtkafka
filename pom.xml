@@ -4,7 +4,7 @@
 
   <groupId>com.datatorrent</groupId>
   <version>1.0-SNAPSHOT</version>
-  <artifactId>dt-kafka</artifactId>
+  <artifactId>dt-kafkabenchmark</artifactId>
   <packaging>jar</packaging>
 
   <name>Kafka Ingestion on Datatorrent RTS</name>
