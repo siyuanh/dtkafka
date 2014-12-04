@@ -11,7 +11,11 @@
   </property>
   <property>
     <name>dt.operator.KafkaProducerOperator.prop.partitionNum</name>
-    <value>1</value>
+    <value>3</value>
+  </property>
+  <property>
+    <name>dt.operator.KafkaProducerOperator.prop.threadNum</name>
+    <value>2</value>
   </property>
   <property>
     <name>dt.operator.KafkaIngestionConsumerOperator.prop.topic</name>
