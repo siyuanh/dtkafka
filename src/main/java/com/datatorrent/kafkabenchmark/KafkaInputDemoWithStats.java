@@ -38,7 +38,7 @@ public class KafkaInputDemoWithStats implements StreamingApplication
   public void populateDAG(DAG dag, Configuration conf)
   {
     
-    dag.setAttribute(DAG.APPLICATION_NAME, "KafkaIngestionDemo");
+    dag.setAttribute(DAG.APPLICATION_NAME, "KafkaIngestionDemoWithStats");
     PartitionableKafkaInputOperator bpkio = new PartitionableKafkaInputOperator();
     
     
