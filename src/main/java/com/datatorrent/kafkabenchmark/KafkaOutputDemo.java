@@ -19,7 +19,6 @@ import org.apache.hadoop.conf.Configuration;
 
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.StreamingApplication;
-import com.datatorrent.api.Context.OperatorContext;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
 
 /**
@@ -35,7 +34,7 @@ public class KafkaOutputDemo implements StreamingApplication
   public void populateDAG(DAG dag, Configuration conf)
   {
     dag.setAttribute(DAG.APPLICATION_NAME, "KafkaOutputDemo");
-    PartitionableKafkaOutputOperator bpkoo = dag.addOperator("KafkaProducerOperator", PartitionableKafkaOutputOperator.class);
+    dag.addOperator("KafkaProducerOperator", PartitionableKafkaOutputOperator.class);
   }
 
 }

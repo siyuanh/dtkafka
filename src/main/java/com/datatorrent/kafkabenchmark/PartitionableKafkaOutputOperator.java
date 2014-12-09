@@ -26,10 +26,8 @@ import kafka.producer.ProducerConfig;
 import com.datatorrent.api.ActivationListener;
 import com.datatorrent.api.Context.OperatorContext;
 import com.datatorrent.api.DefaultPartition;
-import com.datatorrent.api.annotation.ShipContainingJars;
 import com.datatorrent.api.InputOperator;
 import com.datatorrent.api.Partitioner;
-import com.yammer.metrics.Metrics;
 
 import java.util.Map;
 
@@ -107,6 +105,10 @@ public class PartitionableKafkaOutputOperator implements Partitioner<Partitionab
       bpkoo.setPartitionNum(partitionNum);
       bpkoo.setTopic(topic);
       bpkoo.setBrokerList(brokerList);
+      bpkoo.setInterval(interval);
+      bpkoo.setTupleBlust(tupleBlust);
+      bpkoo.setThreadNum(threadNum);
+      bpkoo.setMsgSize(msgSize);
       Partition<PartitionableKafkaOutputOperator> p = new DefaultPartition<PartitionableKafkaOutputOperator>(bpkoo);
       newPartitions.add(p);
     }
