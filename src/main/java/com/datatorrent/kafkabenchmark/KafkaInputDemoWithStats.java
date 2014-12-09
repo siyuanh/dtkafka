@@ -65,8 +65,8 @@ public class KafkaInputDemoWithStats implements StreamingApplication
     bpkio = dag.addOperator("KafkaIngestionConsumerOperator", bpkio);
 
     
-    DevNullCounter<String> nullCounter = dag.addOperator("sfoCounter", new DevNullCounter<String>());
-    dag.addStream("SFOApiDecompress", bpkio.oport, nullCounter.data);
+    DevNullCounter<String> nullCounter = dag.addOperator("NullCounter", new DevNullCounter<String>());
+    dag.addStream("InputToCounter", bpkio.oport, nullCounter.data);
  
 
   }
