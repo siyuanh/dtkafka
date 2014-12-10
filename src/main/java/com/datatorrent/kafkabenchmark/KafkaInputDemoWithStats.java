@@ -60,9 +60,19 @@ public class KafkaInputDemoWithStats implements StreamingApplication
       consumer = new SimpleKafkaConsumer(null, 10000, 100000, "test_kafka_autop_client", new HashSet<Integer>());
     }
     
+    HdfsOffsetManager offsetMgr = new HdfsOffsetManager();
+    //offsetMgr.setOffsetPath(conf.get(Constants.HDFS_OFFSET_FILE_PATH, Constants.HDFS_OFFSET_DEFAULT_FILE_PATH));
+    //offsetMgr.setDelimiter(Constants.HDFS_OFFSET_FILE_DELIMITER);
+
+    offsetMgr.setOffsetPath("/tmp/kafkaOffsets/");
+    offsetMgr.setDelimiter(":");
+
+    bpkio.setOffsetManager(offsetMgr);
+    
+    
     bpkio.setTuplesBlast(1024 * 1024);
     bpkio.setConsumer(consumer);
-    bpkio = dag.addOperator("KafkaIngestionConsumerOperator", bpkio);
+    bpkio = dag.addOperator("KafkaInputOperator", bpkio);
 
     
     DevNullCounter<String> nullCounter = dag.addOperator("NullCounter", new DevNullCounter<String>());
