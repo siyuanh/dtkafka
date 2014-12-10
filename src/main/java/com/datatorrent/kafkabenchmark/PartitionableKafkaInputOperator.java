@@ -40,7 +40,7 @@ public class PartitionableKafkaInputOperator extends AbstractPartitionableKafkaI
   @Override
   protected void emitTuple(Message message)
   {
-    oport.emit("Received");
+    oport.emit(new String(message.buffer().array()));
   }
   
 }
