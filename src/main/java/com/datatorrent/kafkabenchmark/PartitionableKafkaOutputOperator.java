@@ -31,6 +31,8 @@ import com.datatorrent.api.Partitioner;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * This operator keep sending constant messages(1kb each) in {@link #threadNum} threads
  * Messages are distributed evenly to partitions
@@ -52,7 +54,7 @@ public class PartitionableKafkaOutputOperator implements Partitioner<Partitionab
   private int threadNum = 1;
 
   //define constant message
-  private byte[] constantMsg = null;
+  private String randomMsg = null;
 
   private int msgSize = 1024;
   
@@ -119,10 +121,7 @@ public class PartitionableKafkaOutputOperator implements Partitioner<Partitionab
   public void activate(OperatorContext arg0)
   {
 
-    constantMsg = new byte[msgSize];
-    for (int i = 0; i < constantMsg.length; i++) {
-      constantMsg[i] = (byte) ('a' + i%26);
-    }
+
 
     for (int i = 0; i < threadNum; i++) {
       new Thread(new Runnable() {
@@ -142,7 +141,8 @@ public class PartitionableKafkaOutputOperator implements Partitioner<Partitionab
           Producer<String, String>producer = new Producer<String, String>(new ProducerConfig(props));
           long k = 0;
           while (true) {
-            producer.send(new KeyedMessage<String, String>(topic, "" + (k++), new String(constantMsg)));
+            randomMsg = RandomStringUtils.random(msgSize / 2, true, true);
+            producer.send(new KeyedMessage<String, String>(topic, "" + (k++), new String(randomMsg)));
             if(k==Long.MAX_VALUE)
               k=0;
             if (interval > 0 && tupleBlust > 0 && k % tupleBlust == 0) {
