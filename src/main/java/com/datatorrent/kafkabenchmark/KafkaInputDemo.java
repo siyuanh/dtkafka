@@ -92,7 +92,7 @@ public class KafkaInputDemo implements StreamingApplication
 
     bpkio.setOffsetManager(offsetMgr);
 
-    bpkio.setTuplesBlast(1024 * 1024);
+    
     bpkio.setConsumer(consumer);
     bpkio = dag.addOperator("KafkaIngestionConsumerOperator", bpkio);
 
