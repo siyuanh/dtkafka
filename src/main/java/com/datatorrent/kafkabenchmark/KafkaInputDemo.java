@@ -99,7 +99,6 @@ public class KafkaInputDemo implements StreamingApplication
     CollectorModule cm = dag.addOperator("DataBlackhole", CollectorModule.class);
     dag.addStream("end", bpkio.oport, cm.inputPort).setLocality(Locality.CONTAINER_LOCAL);
     dag.setInputPortAttribute(cm.inputPort, PortContext.PARTITION_PARALLEL, true);
-    dag.setAttribute(bpkio, OperatorContext.INITIAL_PARTITION_COUNT, 1);
 //    dag.setAttribute(bpkio, OperatorContext.STATS_LISTENER, KafkaMeterStatsListener.class);
  
 

@@ -3,7 +3,7 @@
   <!-- kafka Ingestion application -->
   <property>
     <name>dt.operator.KafkaProducerOperator.prop.topic</name>
-    <value>DTKafka</value>
+    <value>forintel</value>
   </property>
   <property>
     <name>dt.operator.KafkaProducerOperator.prop.brokerList</name>
@@ -14,12 +14,12 @@
     <value>3</value>
   </property>
   <property>
-    <name>dt.operator.KafkaProducerOperator.prop.threadNum</name>
-    <value>2</value>
+    <name>dt.operator.KafkaProducerOperator.prop.interval</name>
+    <value>-1</value>
   </property>
   <property>
     <name>dt.operator.KafkaIngestionConsumerOperator.prop.topic</name>
-    <value>DTKafka</value>
+    <value>forintel</value>
   </property>
   <property>
     <name>dt.operator.KafkaIngestionConsumerOperator.prop.brokerSet</name>
